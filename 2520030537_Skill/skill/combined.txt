@@ -1,0 +1,2 @@
+Command output: test 
+Error output: simulated error message

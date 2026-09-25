@@ -1,0 +1,5 @@
+OSSP Practical Q15
+Operating Systems Laboratory
+Linux Programming
+OS Process Management
+Computer Networks
