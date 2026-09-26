@@ -1,0 +1,69 @@
+Q23 - SHELL ARCHITECTURE DOCUMENTATION
+
+1. ARCHITECTURE
+
+User Input
+    |
+    v
+Command Parser
+    |
+    v
+Syntax Validation
+    |
+    v
+Built-in Command? ---- YES ---> Execute in Shell
+    |
+    NO
+    |
+    v
+Create Child Process
+    |
+    v
+Execute Command
+    |
+    +---- Foreground ---> Wait for Completion
+    |
+    +---- Background ---> Store Job Information
+                              |
+                              v
+                         Monitor Job Status
+
+2. EXECUTION PATHS
+
+Foreground:
+Read -> Parse -> fork -> exec -> waitpid -> Prompt
+
+Background:
+Read -> Parse -> fork -> exec -> Store PID -> Prompt
+
+Pipeline:
+Read -> Parse -> pipe -> fork children ->
+dup2 -> exec -> close unused descriptors -> waitpid
+
+3. IMPORTANT SYSTEM CALLS
+
+fork()       Creates a child process.
+execvp()     Executes a command.
+pipe()       Creates a communication pipe.
+dup2()       Redirects input or output.
+waitpid()    Waits for or monitors child processes.
+setpgid()    Assigns a process group.
+tcsetpgrp()  Transfers terminal control.
+kill()       Sends signals to processes or groups.
+
+4. DESIGN DECISIONS
+
+- Separate parsing from command execution.
+- Execute external commands in child processes.
+- Use process groups for job control.
+- Track background jobs using process IDs.
+- Report errors without terminating the shell.
+- Close unused file descriptors.
+- Release resources after execution.
+
+5. TESTING
+
+Large pipelines: See stress_report.txt
+Multiple jobs: See stress_report.txt
+Performance: See performance.txt
+Error detection: See failure_output.txt
