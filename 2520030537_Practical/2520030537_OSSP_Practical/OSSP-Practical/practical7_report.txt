@@ -1,0 +1,17 @@
+PRACTICAL 7 - MEMORY ANALYSIS
+
+The code segment contains executable instructions.
+The data segment stores initialized global and static variables.
+The BSS segment stores uninitialized global and static variables.
+The heap stores dynamically allocated memory.
+The stack stores local variables and function-call information.
+
+The /proc/PID/maps file shows virtual address ranges,
+memory permissions, mapped files, the heap and the stack.
+
+The pmap tool displays the memory mappings and their sizes.
+ASLR changes memory addresses between executions.
+
+RESULT:
+Linux process memory organization and virtual memory
+mappings were successfully examined.
