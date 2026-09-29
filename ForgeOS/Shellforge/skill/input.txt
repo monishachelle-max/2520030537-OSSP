@@ -1,0 +1,3 @@
+Operating Systems and Systems Programming
+Input redirection test
+Data read from a file using stdin
